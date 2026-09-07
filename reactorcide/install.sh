@@ -16,13 +16,14 @@ __init_reactorcide() {
     # Every package should define these 6 variables
     pkg_cmd_name="reactorcide"
 
-    # pkg_get_current_version is intentionally NOT defined.
-    # 'reactorcide' (as of v0.12.0) has no '--version' flag and no 'version'
-    # subcommand (it's a urfave/cli app with no version output), so there is
-    # no output to parse. Without this function, webi cannot skip a reinstall
-    # of the same version, but every other part of the install still works
-    # correctly.
-    # TODO: ask upstream to add a '--version' flag.
+    # pkg_get_current_version is recommended, but not required
+    pkg_get_current_version() {
+        # 'reactorcide --version' has output in this format:
+        #       reactorcide 1.2.3
+        # This trims it down to just the version number:
+        #       1.2.3
+        reactorcide --version 2> /dev/null | head -n 1 | cut -d' ' -f 2
+    }
 
     # pkg_install must be defined by every package
     pkg_install() {

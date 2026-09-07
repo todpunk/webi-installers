@@ -11,9 +11,6 @@ description:
 To update or switch versions, run `webi semver-tags@stable` (or `@v0.6.1`,
 `@beta`, etc).
 
-**Note**: `semver-tags` has no `--version` flag yet. Webi cannot detect the
-installed version automatically, but the install and update steps still work.
-
 ### Files
 
 These are the files that are created and/or modified with this installer:

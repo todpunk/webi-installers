@@ -12,11 +12,6 @@ description:
 To update or switch versions, run `webi csilgen@stable` (or `@v0.2.6`, `@beta`,
 etc).
 
-**Note**: `csilgen --version` prints the wrong number (`csilgen 0.1.0`) in the
-current release. Do not use it to check which version you have. Webi cannot
-detect the installed version from this output either, but install and update
-still work.
-
 ### Supported platforms
 
 `csilgen` publishes builds for these platforms:

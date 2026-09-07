@@ -30,15 +30,14 @@ __init_csilgen() {
     # Every package should define these 6 variables
     pkg_cmd_name="csilgen"
 
-    # pkg_get_current_version is intentionally NOT defined.
-    # 'csilgen' (as of v0.2.6) has a '--version' flag, but the published
-    # binary prints the wrong string ("csilgen 0.1.0") regardless of the
-    # actual release tag. Parsing that would make webi think every version
-    # is "0.1.0" and confuse its reinstall/upgrade logic. Without this
-    # function, webi cannot skip a reinstall of the same version by version
-    # string, but it still works correctly by checking whether the
-    # version-specific install path already exists.
-    # TODO: ask upstream to fix the --version output.
+    # pkg_get_current_version is recommended, but not required
+    pkg_get_current_version() {
+        # 'csilgen --version' has output in this format:
+        #       csilgen 1.2.3
+        # This trims it down to just the version number:
+        #       1.2.3
+        csilgen --version 2> /dev/null | head -n 1 | cut -d' ' -f 2
+    }
 
     # pkg_install must be defined by every package
     pkg_install() {

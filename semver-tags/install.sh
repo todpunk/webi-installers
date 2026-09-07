@@ -16,12 +16,14 @@ __init_semver_tags() {
     # Every package should define these 6 variables
     pkg_cmd_name="semver-tags"
 
-    # pkg_get_current_version is intentionally NOT defined.
-    # 'semver-tags' (as of v0.6.1) has no '--version' flag and no 'version'
-    # subcommand, so there is no output to parse. Without this function,
-    # webi cannot skip a reinstall of the same version, but every other
-    # part of the install still works correctly.
-    # TODO: ask upstream to add a '--version' flag.
+    # pkg_get_current_version is recommended, but not required
+    pkg_get_current_version() {
+        # 'semver-tags --version' has output in this format:
+        #       semver-tags 1.2.3
+        # This trims it down to just the version number:
+        #       1.2.3
+        semver-tags --version 2> /dev/null | head -n 1 | cut -d' ' -f 2
+    }
 
     # pkg_install must be defined by every package
     pkg_install() {

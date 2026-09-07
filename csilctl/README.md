@@ -11,9 +11,6 @@ description:
 To update or switch versions, run `webi csilctl@stable` (or `@v0.2.1`, `@beta`,
 etc).
 
-**Note**: `csilctl` has no `--version` flag yet. Webi cannot detect the
-installed version automatically, but the install and update steps still work.
-
 ### Supported platforms
 
 `csilctl` publishes builds for these platforms:
